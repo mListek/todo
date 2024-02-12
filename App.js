@@ -16,11 +16,25 @@ export default function App() {
           screenOptions={{
             headerStyle: { backgroundColor: "black" },
             headerTintColor: "white",
+            headerBackTitle: "Back",
             contentStyle: { backgroundColor: "black" },
           }}
         >
-          <Stack.Screen name="List Picker" component={ListPicker} />
-          <Stack.Screen name="List Content" component={ListContent} />
+          <Stack.Screen
+            name="ListPicker"
+            component={ListPicker}
+            options={{ title: "Your Lists" }}
+          />
+          <Stack.Screen
+            name="ListContent"
+            component={ListContent}
+            options={({ route }) => {
+              const item = route.params.item;
+              return {
+                title: item.name,
+              };
+            }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>
