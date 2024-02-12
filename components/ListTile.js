@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const ListTile = ({ name, quantity }) => {
+const ListTile = ({ onPress, name, quantity }) => {
   const itemText = quantity === 1 ? "item" : "items";
 
   return (
@@ -10,6 +10,7 @@ const ListTile = ({ name, quantity }) => {
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
+        onPress={onPress}
       >
         <View style={styles.innerContainer}>
           <Text style={styles.name}>{name}</Text>
@@ -27,8 +28,8 @@ export default ListTile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 16,
-    height: 150,
+    margin: 8,
+    height: 55,
     borderRadius: 10,
     backgroundColor: "#323030",
   },
