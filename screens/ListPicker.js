@@ -3,13 +3,23 @@ import { FlatList } from "react-native";
 import { LISTS } from "../data/dummy-data";
 import ListTile from "../components/ListTile";
 
-const renderListItem = (itemData) => {
-  return (
-    <ListTile name={itemData.item.name} quantity={itemData.item.todos.length} />
-  );
-};
+const ListPicker = ({ navigation }) => {
+  const renderListItem = (itemData) => {
+    const pressHandler = () => {
+      navigation.navigate("ListContent", {
+        item: itemData.item,
+      });
+    };
 
-const ListPicker = () => {
+    return (
+      <ListTile
+        onPress={pressHandler}
+        name={itemData.item.name}
+        quantity={itemData.item.todos.length}
+      />
+    );
+  };
+
   return (
     <FlatList
       data={LISTS}
