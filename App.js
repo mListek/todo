@@ -10,12 +10,13 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
-            headerStyle: { backgroundColor: "#351401" },
-            contentStyle: { backgroundColor: "#351401" },
+            headerStyle: { backgroundColor: "black" },
+            headerTintColor: "white",
+            contentStyle: { backgroundColor: "black" },
           }}
         >
           <Stack.Screen name="List Picker" component={ListPicker} />
