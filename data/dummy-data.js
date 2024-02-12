@@ -7,4 +7,10 @@ export const LISTS = [
     "create an application",
   ]),
   new List(1, "Groceries", ["bananas", "bread", "pizza"]),
+  new List(2, "Test List XX", ["test item"]),
+  new List(3, "Test List XX", []),
+  new List(4, "Test List XX", []),
+  new List(5, "Test List XX", []),
+  new List(6, "Test List XX", []),
+  new List(7, "Test List XX", []),
 ];
