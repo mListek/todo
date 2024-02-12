@@ -1,11 +1,21 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-const ListTile = ({ name }) => {
+const ListTile = ({ name, quantity }) => {
+  const itemText = quantity === 1 ? "item" : "items";
+
   return (
     <View style={styles.container}>
-      <Pressable>
-        <View>
-          <Text>{name}</Text>
+      <Pressable
+        style={({ pressed }) => [
+          styles.button,
+          pressed ? styles.buttonPressed : null,
+        ]}
+      >
+        <View style={styles.innerContainer}>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.quantity}>
+            {quantity} {itemText}
+          </Text>
         </View>
       </Pressable>
     </View>
@@ -20,6 +30,30 @@ const styles = StyleSheet.create({
     margin: 16,
     height: 150,
     borderRadius: 10,
-    backgroundColor: "lightgrey",
+    backgroundColor: "#323030",
+  },
+  button: {
+    flex: 1,
+  },
+  buttonPressed: {
+    opacity: 0.5,
+  },
+  innerContainer: {
+    flex: 1,
+    padding: 16,
+    borderRadius: 8,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  name: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "white",
+  },
+  quantity: {
+    fontSize: 16,
+    color: "white",
+    textDecorationLine: "underline",
   },
 });
