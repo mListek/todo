@@ -1,18 +1,22 @@
-import { StyleSheet, Text, View } from "react-native";
+import { FlatList } from "react-native";
+import TodoTile from "../components/TodoTile";
 
-const ListContent = () => {
+const renderTodoItem = (itemData) => {
   return (
-    <View style={styles.container}>
-      <Text>List Content Screen</Text>
-    </View>
+    <TodoTile id={itemData.item.id} description={itemData.item.description} />
+  );
+};
+
+const ListContent = ({ route }) => {
+  const item = route.params.item;
+
+  return (
+    <FlatList
+      data={item.todos}
+      keyExtractor={(item) => item.id}
+      renderItem={renderTodoItem}
+    />
   );
 };
 
 export default ListContent;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-  },
-});
