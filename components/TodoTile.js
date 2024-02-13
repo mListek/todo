@@ -1,18 +1,50 @@
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { View, StyleSheet, TextInput } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+import { useState } from "react";
 
 const TodoTile = ({ id, description }) => {
+  const [tilePressed, setTilePressed] = useState(false);
+  const [todoContent, setTodoContent] = useState(description);
+
+  const handleTilePress = () => {
+    setTilePressed((prev) => !prev);
+  };
+
+  const handleTextChange = (enteredValue) => {
+    setTodoContent(enteredValue);
+  };
+
+  const handleSaveChanges = () => {};
+
   return (
     <View style={styles.container}>
-      <Pressable
-        style={({ pressed }) => [
-          styles.button,
-          pressed ? styles.buttonPressed : null,
-        ]}
-      >
-        <View style={styles.innerContainer}>
-          <Text style={styles.description}>{description}</Text>
-        </View>
-      </Pressable>
+      <View style={styles.buttonContainer}>
+        {!tilePressed && (
+          <Ionicons
+            name="ellipse-outline"
+            size={28}
+            color="orange"
+            onPress={handleTilePress}
+          />
+        )}
+        {tilePressed && (
+          <Ionicons
+            name="checkmark-circle-outline"
+            size={28}
+            color="orange"
+            onPress={handleTilePress}
+          />
+        )}
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          keyboardAppearance="dark"
+          value={todoContent}
+          onChangeText={handleTextChange}
+          onEndEditing={handleSaveChanges}
+        />
+      </View>
     </View>
   );
 };
@@ -22,28 +54,24 @@ export default TodoTile;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 8,
-    height: 55,
-    borderRadius: 10,
-    backgroundColor: "#323030",
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomColor: "#414141",
+    borderBottomWidth: 1,
+    borderBottomEndRadius: 35,
+    borderBottomStartRadius: 45,
   },
-  button: {
+  buttonContainer: {},
+  inputContainer: {
     flex: 1,
-  },
-  buttonPressed: {
-    opacity: 0.5,
-  },
-  innerContainer: {
-    flex: 1,
-    padding: 16,
-    borderRadius: 8,
+    padding: 10,
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  description: {
-    fontWeight: "bold",
-    fontSize: 20,
+  input: {
+    flex: 1,
+    fontSize: 16,
     color: "white",
   },
 });
